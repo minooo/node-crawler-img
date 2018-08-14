@@ -1,0 +1,23 @@
+{
+  "name": "crawler-img",
+  "version": "1.0.0",
+  "description": "node 图片爬虫",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minooo/node-crawler-img.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minooo/node-crawler-img/issues"
+  },
+  "homepage": "https://github.com/minooo/node-crawler-img#readme",
+  "dependencies": {
+    "puppeteer": "^1.7.0",
+    "puppeteer-core": "^1.7.0"
+  }
+}
