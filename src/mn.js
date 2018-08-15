@@ -2,6 +2,10 @@ const puppeteer = require("puppeteer-core");
 const path = require("path");
 const { mn } = require("./config/default");
 const srcToImg = require("./helper/srcToImg");
+const clearImgs = require("./helper/clearImgs");
+
+clearImgs(mn);
+
 (async () => {
   const browser = await puppeteer.launch({
     executablePath: path.resolve(
@@ -16,13 +20,13 @@ const srcToImg = require("./helper/srcToImg");
   console.log("go to https://image.baidu.com");
 
   await page.setViewport({
-    width: 1620,
-    height: 1080
+    width: 1020,
+    height: 1960
   });
   console.log("reset viewport");
 
   await page.focus("#kw");
-  await page.keyboard.sendCharacter("狗");
+  await page.keyboard.sendCharacter("美");
   await page.click(".s_search");
   console.log("go to search list");
 
@@ -34,7 +38,8 @@ const srcToImg = require("./helper/srcToImg");
     });
     console.log(`get ${srcs.length} images, start download.`);
 
-    srcs.forEach(async item => {
+    srcs.forEach(async (item, index) => {
+      await page.waitFor(101 * (index + 1));
       await srcToImg(item, mn);
     });
 

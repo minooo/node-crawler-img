@@ -13,11 +13,14 @@ module.exports = async (src, dir) => {
   }
 };
 
+// 随机字符串
+const randomStr = () => Math.random().toString(36).substr(2)
+
 // url => image
 const urlToImage = promisify((url, dir, cb) => {
   const mod = /^https:/.test(url) ? https : http
   const ext = path.extname(url)
-  const file = path.join(dir, `${Date.now()}${ext}`)
+  const file = path.join(dir, `${randomStr()}${ext}`)
   mod.get(url, res => {
     res.pipe(fs.createWriteStream(file)).on("finish", () => {
       // cb();
@@ -33,7 +36,7 @@ const base64ToImage = async (base64Str, dir) => {
 
   try {
     const ext = matchs[1].split("/")[1].replace("jpeg", "jpg");
-    const file = path.join(dir, `${Date.now()}.${ext}`);
+    const file = path.join(dir, `${randomStr()}.${ext}`);
     writeFile(file, matchs[2], "base64")
     console.log(file)
   } catch(err) {
